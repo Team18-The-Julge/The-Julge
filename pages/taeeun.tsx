@@ -1,4 +1,4 @@
-import Footer from '@/components/common/footer';
+import Footer from '@/components/common/Footer/Footer';
 
 function TaeEun() {
   return (

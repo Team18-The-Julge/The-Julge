@@ -1,0 +1,42 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/fonts.scss';
+@import '../../../styles/mixin.scss';
+
+.footerBox {
+  @include flexbox;
+  width: 100%;
+  height: 10rem;
+  background-color: $color-gray-10;
+  color: $color-gray-50;
+  @include sopoqa-16-400;
+}
+
+.wrapper {
+  @include flexbox($justify: space-between);
+  display: flex;
+  flex-direction: space-between;
+  width: 96.4rem;
+}
+
+.links {
+  @include flexbox;
+  height: 2.6rem;
+  gap: 3rem;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sns {
+  @include flexbox($justify: space-between);
+  width: 9.5rem;
+  height: 2.6rem;
+}
+
+.snsBox {
+  @include flexbox();
+  width: 25px;
+  height: 25px;
+}
