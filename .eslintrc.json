@@ -82,7 +82,7 @@
           ["@/pages", "./pages"],
           ["@/public", "./public"]
         ],
-        "extensions": [".js", ".jsx", ".json", ".tsx", ".ts", "scss"]
+        "extensions": [".js", ".jsx", ".json", ".tsx", ".ts"]
       }
     }
   }

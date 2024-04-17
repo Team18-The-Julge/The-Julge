@@ -42,14 +42,12 @@ select {
   margin: 0;
 }
 html {
-  box-sizing: border-box;
   font-size: 62.5%;
 }
 *,
 :after,
 :before {
-  box-sizing: inherit;
-  font-size: 10px;
+  box-sizing: border-box;
 }
 img,
 video {

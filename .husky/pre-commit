@@ -25,6 +25,6 @@ echo '진심입니까 휴먼?
 (  [][][][][____________][][][][]  )
  \ ------------------------------ /
   \______________________________/'
-npm run lint
-npm run lint:fix
+# npm run lint
+# npm run lint:fix
 npx lint-staged
