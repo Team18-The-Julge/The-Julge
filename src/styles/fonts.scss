@@ -1,34 +1,43 @@
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "SpoqaHanSansNeo-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff") format("woff");
+  font-family: 'SpoqaHanSansNeo-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @mixin sopoqa-12-400 {
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6rem;
 }
+
 @mixin sopoqa-14-400 {
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
   line-height: 2.2rem;
 }
 
+@mixin sopoqa-14-700 {
+  font-family: 'SpoqaHanSansNeo-Regular';
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 @mixin sopoqa-16-400 {
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
@@ -36,7 +45,7 @@
 }
 
 @mixin sopoqa-16-700 {
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 700;
@@ -44,7 +53,7 @@
 }
 
 @mixin sopoqa-28-700 {
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 2.8rem;
   font-style: normal;
   font-weight: 700;
@@ -53,7 +62,7 @@
 
 //pretendard
 @mixin pretendard-16-400 {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
@@ -61,7 +70,7 @@
 }
 
 @mixin pretendard-16-500 {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 500;
@@ -69,7 +78,7 @@
 }
 
 @mixin pretendard-18-500 {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 500;

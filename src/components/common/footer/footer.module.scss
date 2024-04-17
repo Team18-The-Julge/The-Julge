@@ -34,7 +34,7 @@
   color: inherit;
 }
 
-.snsIcon {
+.snsIcons {
   @include flexbox($justify: space-between);
   width: 9.5rem;
   height: 2.6rem;

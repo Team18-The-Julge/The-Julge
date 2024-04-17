@@ -1,0 +1,43 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.defaultButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  background: $color-white;
+  color: $color-primary;
+  border-radius: 0.6rem;
+  border: 0.1rem solid $color-primary;
+  cursor: pointer;
+}
+
+.solid {
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+}
+
+.inactive {
+  background: $color-gray-40;
+  border: none;
+  color: $color-white;
+  cursor: default;
+}
+
+.large {
+  @include sopoqa-16-700;
+  padding: 1.4rem 13.6rem;
+}
+
+.medium {
+  @include sopoqa-14-700;
+  padding: 1rem 2rem;
+}
+
+.small {
+  @include sopoqa-12-400;
+  padding: 0.8rem 1.2rem;
+}
