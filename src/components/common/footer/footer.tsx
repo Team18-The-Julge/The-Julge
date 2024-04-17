@@ -10,7 +10,7 @@ function Footer() {
   return (
     <footer className={styles.footerBox}>
       <div className={styles.wrapper}>
-        <p>©codeit - 2023</p>
+        <p className={styles.copyright}>©codeit - 2023</p>
         <div className={styles.links}>
           <Link href="/" className={styles.link}>
             <span>Privacy Policy</span>
