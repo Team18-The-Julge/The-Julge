@@ -1,0 +1,16 @@
+@import '../../../../styles/fonts.scss';
+@import '../../../../styles/colors.scss';
+
+.toastBox {
+  @include sopoqa-16-400;
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  padding: 1rem 1.6rem;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  background-color: $color-red-30;
+  color: $color-white;
+  line-height: 26px;
+}

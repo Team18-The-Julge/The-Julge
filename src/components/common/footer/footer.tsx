@@ -9,8 +9,8 @@ import instagramImage from '@/public/svgs/instagram.svg';
 function Footer() {
   return (
     <footer className={styles.footerBox}>
-      <div className={styles.wrapper}>
-        <p>©codeit - 2023</p>
+      <div className={styles.footerWrapper}>
+        <p className={styles.copyright}>©codeit - 2023</p>
         <div className={styles.links}>
           <Link href="/" className={styles.link}>
             <span>Privacy Policy</span>
@@ -19,7 +19,7 @@ function Footer() {
             <span>FAQ</span>
           </Link>
         </div>
-        <div className={styles.sns}>
+        <div className={styles.snsIcons}>
           <Link href="/" className={styles.snsBox} target="_blank" rel="noopener noreferrer">
             <Image src={emailImage} alt="email" width={25} height={25} />
           </Link>
