@@ -1,12 +1,13 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from '@/components/common/Footer/Footer.module.scss';
-import emailImage from '@/public/svgs/envelope-square.svg';
-import facebookImage from '@/public/svgs/facebook-square.svg';
-import instagramImage from '@/public/svgs/instagram.svg';
+import { ReactComponent as EmailIcon } from '@/public/svgs/envelope-square.svg';
+import { ReactComponent as FacebookIcon } from '@/public/svgs/facebook-square.svg';
+import { ReactComponent as InstagramIcon } from '@/public/svgs/instagram.svg';
 
 function Footer() {
+  const Icons = [<EmailIcon />, <FacebookIcon />, <InstagramIcon />];
+
   return (
     <footer className={styles.footerBox}>
       <div className={styles.footerWrapper}>
@@ -19,17 +20,18 @@ function Footer() {
             <span>FAQ</span>
           </Link>
         </div>
-        <div className={styles.snsIcons}>
-          <Link href="/" className={styles.snsBox} target="_blank" rel="noopener noreferrer">
-            <Image src={emailImage} alt="email" width={25} height={25} />
-          </Link>
-          <Link href="https://www.facebook.com/" className={styles.snsBox} target="_blank" rel="noopener noreferrer">
-            <Image src={facebookImage} alt="facebook" width={25} height={25} />
-          </Link>
-          <Link href="https://www.instagram.com/" className={styles.snsBox} target="_blank" rel="noopener noreferrer">
-            <Image src={instagramImage} alt="instagram" width={25} height={25} />
-          </Link>
-        </div>
+        <section className={styles.snsIcons}>
+          {Icons.map((Icon, index) => (
+            <Link
+              href={index === 0 ? '/' : index === 1 ? 'https://www.facebook.com/' : 'https://www.instagram.com/'}
+              className={styles.snsBox}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {Icon}
+            </Link>
+          ))}
+        </section>
       </div>
     </footer>
   );
