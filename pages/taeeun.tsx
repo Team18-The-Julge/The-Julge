@@ -10,12 +10,15 @@ function TaeEun() {
 
   return (
     <div>
-      <Footer />
-
-      {showToast && <Toast onShow={() => setShowToast(false)}>토스트에유</Toast>}
-      <Button className={styles.button} size="small" solid active onClick={() => setShowToast(true)}>
-        버튼버튼
-      </Button>
+      <div>
+        <Footer />
+      </div>
+      <div>
+        {showToast && <Toast onShow={() => setShowToast(false)}>토스트에유</Toast>}
+        <Button className={styles.button} size="small" solid active onClick={() => setShowToast(true)}>
+          버튼버튼
+        </Button>
+      </div>
     </div>
   );
 }
