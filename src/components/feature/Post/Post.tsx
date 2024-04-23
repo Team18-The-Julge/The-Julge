@@ -20,10 +20,16 @@ export default function Post({
   shopId
 }: PostProps) {
   const router = useRouter();
+  const currentPath = router.pathname;
+
   const duration = calcFormatDuratoin(startedAt, workhour);
 
   const handleClickToDetailPage = () => {
-    router.push(`/notice/${shopId}/${id}`);
+    if (currentPath.includes('/shop')) {
+      router.push(`shop/${id}`);
+    } else {
+      router.push(`detail/${shopId}/${id}`);
+    }
   };
 
   return (
