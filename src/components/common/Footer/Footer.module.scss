@@ -1,0 +1,73 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.footerBox {
+  @include flexbox;
+  width: 100%;
+  height: 10rem;
+  background-color: $color-gray-10;
+  color: $color-gray-50;
+  @include sopoqa-16-400;
+  padding: 3.7rem auto;
+}
+
+.footerWrapper {
+  @include flexbox($justify: space-between);
+  width: 96.4rem;
+}
+
+.copyright {
+  grid-area: copyright;
+}
+
+.links {
+  @include flexbox;
+  height: 2.6rem;
+  gap: 3rem;
+  grid-area: links;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.snsIcons {
+  @include flexbox($justify: space-between);
+  width: 9.5rem;
+  height: 2.6rem;
+  grid-area: sns;
+}
+
+.snsBox {
+  @include flexbox();
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@include tablet {
+  .footerBox {
+    padding: 3.7rem 3.2rem;
+  }
+}
+
+@include pc-first-mobile {
+  .footerBox {
+    height: 12.6rem;
+    padding: 3.2rem 2rem 1.6rem;
+    @include sopoqa-14-400;
+  }
+  .footerWrapper {
+    height: 7.8rem;
+    display: grid;
+    grid-template-areas:
+      'links sns'
+      'copyright .';
+    row-gap: 4rem;
+    margin: 0;
+  }
+  .copyright {
+    @include sopoqa-12-400;
+  }
+}
