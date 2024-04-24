@@ -13,3 +13,5 @@
 <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&amp;logo=next.js&amp;logoColor=white"/>
 
 박윤국
+
+김가은
