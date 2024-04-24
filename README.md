@@ -11,3 +11,5 @@
 ## 프로젝트 기간: 2024.04.15 ~ 2024.05.01
 
 <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&amp;logo=next.js&amp;logoColor=white"/>
+
+박윤국
