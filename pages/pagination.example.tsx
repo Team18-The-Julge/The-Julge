@@ -1,4 +1,4 @@
-import Pagination from '@/components/feature/pagination/pagination';
+import Pagination from '@/components/feature/Pagination/Pagination';
 import usePagination from '@/hooks/usePagination';
 
 const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수

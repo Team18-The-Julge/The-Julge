@@ -1,6 +1,6 @@
 import styles from '@/components/common/Table/Table.module.scss';
 import { NoticesColumn } from '@/components/common/Table/Table.type';
-import Pagination from '@/components/feature/pagination/pagination';
+import Pagination from '@/components/feature/Pagination/Pagination';
 
 interface TableProps<T> {
   data: T[];

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Button from '@/components/common/Button/Button';
 import ModalGroup from '@/components/feature/Modal/ModalGroup';
-import UserEditModal from '@/components/feature/userEditModal/uesrEditModal';
+import UserEditModal from '@/components/feature/UserEditModal/UesrEditModal';
 
 import styles from './ProfileCard.module.scss';
 
