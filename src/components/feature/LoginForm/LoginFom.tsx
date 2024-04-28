@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { PostAuthenticationPayload } from '@/apis/authentication/authentication.type';
+import { PostAuthenticationPayload, PostAuthenticationRes } from '@/apis/authentication/authentication.type';
 import { usePostAuthentication } from '@/apis/authentication/useAuthenticationService';
 import Button from '@/components/common/Button/Button';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
@@ -48,18 +48,24 @@ export default function LoginForm() {
   const router = useRouter();
 
   // 로그인 post 보내기
-  const { mutate: loginMutate, data: loginData } = usePostAuthentication({
+  const { mutate: loginMutate } = usePostAuthentication({
     email: '',
     password: ''
   });
 
   // login 성공시 실행
-  const handleLoginSuccess = () => {
-    const { token } = loginData.item;
-    Cookies.set('authToken', token, { expires: 1, path: '/' });
-    setUserInfoAtom(loginData);
-
-    router.push(status.login.redirectPath);
+  const handleLoginSuccess = (userdata: PostAuthenticationRes) => {
+    const { data } = userdata;
+    if (data.item) {
+      const { token, user } = data.item;
+      const { id } = user.item;
+      Cookies.set('token', token, { expires: 1, path: '/' });
+      Cookies.set('userId', id, { expires: 1, path: '/' });
+      setUserInfoAtom(userdata);
+      router.push(status.login.redirectPath);
+    } else {
+      console.error('data item is empty');
+    }
   };
 
   // login 실패시 실행

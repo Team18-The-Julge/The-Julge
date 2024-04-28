@@ -5,6 +5,7 @@ export type PostUserPayload = {
   password: string;
   type: UserType;
 };
+
 export type PostInputType = {
   email: string;
   password: string;

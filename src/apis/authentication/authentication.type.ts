@@ -15,8 +15,10 @@ type Item = {
 };
 
 export type PostAuthenticationRes = {
-  item: Item;
-  links: Array<Link>;
+  data: {
+    item: Item;
+    links: Array<Link>;
+  };
 };
 
 export type PostAuthenticationResError = {

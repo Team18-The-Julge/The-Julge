@@ -78,9 +78,11 @@ export type UserInfo = {
 };
 
 export type UserItem = UserInfo & {
-  id: string;
-  email: string;
-  type: UserType;
+  item: {
+    id: string;
+    email: string;
+    type: UserType;
+  };
 };
 
 export type BaseQuery = {

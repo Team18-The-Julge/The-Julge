@@ -22,7 +22,7 @@ import { userIdAtom } from '../../../libs/contexts/AuthAtom';
 import Modal from '../Modal/Modal';
 import ModalGroup, { useModal } from '../Modal/ModalGroup';
 import { usePostUser } from '@/apis/user/useUserService';
-import { PostInputType } from '@/apis/user/user.type';
+import { PostInputType, PostUserRes } from '@/apis/user/user.type';
 import RadioInputForm from '@/components/common/Input/RadioInputForm/RadioInputForm';
 
 export default function SignupForm() {
@@ -55,18 +55,20 @@ export default function SignupForm() {
   const router = useRouter();
 
   // 회원가입 Post 보내기
-  const { mutate: signupMutate, data: signupData } = usePostUser({
+  const { mutate: signupMutate } = usePostUser({
     email: '',
     password: '',
     type: 'employee'
   });
 
   //회원가입 성공시 실행
-  const handleSignupSuccess = () => {
-    const { id } = signupData.item;
+  const handleSignupSuccess = (userdata: PostUserRes) => {
+    const { id } = userdata.item;
+    console.log(id);
     setUserIdAtom(id);
     Cookies.set('signupData', id, { expires: 1, path: '/' });
     router.push(status.signup.redirectPath);
+    console.log('성공', userdata.item);
   };
 
   //회원가입 실패시 실행
@@ -74,16 +76,16 @@ export default function SignupForm() {
     if (axios.isAxiosError(e) && e.response) {
       const data = e.response.data as SignupErrorMessage;
       setAlertMessage(data.message);
-      console.log('모달');
       modalOpen();
     } else {
       console.log(e);
     }
   };
+
   const onSubmit = (payload: PostInputType) => {
     // eslint-disable-next-line no-unused-vars
     const { passwordConfirm, ...dataToSubmit } = payload;
-    setIsButtonActive(true);
+    console.log('보내는', dataToSubmit);
     signupMutate(dataToSubmit, { onSuccess: handleSignupSuccess, onError: handleSignupError });
   };
   //회원가입시 비밀번호 확인 validating을 위한 watch
@@ -141,7 +143,7 @@ export default function SignupForm() {
             type="password"
             {...passwordConfirmRegister}
           />
-          <RadioInputForm labels={['사장님', '알바생']} value="employer" {...registerList.type} />
+          <RadioInputForm labels={['사장님', '알바생']} {...registerList.type} />
 
           <Button size="large" solid submit active={isButtonActive}>
             {status.signup.buttonText}
