@@ -17,6 +17,7 @@ type Props = {
 
 type AlertFormat = {
   shop: string;
+  shopId: string;
   result: string;
   createdAt: string;
   startsAt: string;
@@ -52,6 +53,7 @@ function Gnb({ userType, alertList }: Props) {
     if (alertList && alertList.count > 0) {
       const formatAlertList = alertList.items.map((alert) => ({
         shop: alert.item.shop.item.name,
+        shopId: alert.item.shop.item.id,
         result: alert.item.result,
         createdAt: alert.item.createdAt,
         startsAt: alert.item.notice.item.startsAt,

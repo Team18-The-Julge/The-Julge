@@ -5,10 +5,15 @@ import { ReactComponent as Close } from '@/public/svgs/closeButton.svg';
 
 import NotificationModalCard from './NotificationModalCard/NotificationModalCard';
 
+// import Cookies from 'js-cookie';
+// import { jwtDecode } from 'jwt-decode';
+// import { usePutAlert } from '@/apis/alert/useAlertService';
+
 type NotificationModalProps = {
   alertCount: number;
   alertList: {
     shop: string;
+    shopId: string;
     result: string;
     createdAt: string;
     startsAt: string;
@@ -21,13 +26,13 @@ type NotificationModalProps = {
 
 export default function NotificationModal({ alertCount, alertList, isModalShow, filterRef }: NotificationModalProps) {
   const [modalClose, setModlaClose] = useState(false);
-
+  console.log(alertList, 'alertList');
   return (
     isModalShow &&
     !modalClose && (
       <section className={styles.container} ref={filterRef}>
         <div>
-          <h1>알림 {alertCount}개</h1>
+          <p>알림 {alertCount}개</p>
           <Close onClick={() => setModlaClose(true)} />
         </div>
 
@@ -35,6 +40,7 @@ export default function NotificationModal({ alertCount, alertList, isModalShow, 
           <NotificationModalCard
             key={item.shop}
             shop={item.shop}
+            shopId={item.shopId}
             result={item.result as 'accepted' | 'rejected'}
             createdAt={item.createdAt}
             startsAt={item.startsAt}

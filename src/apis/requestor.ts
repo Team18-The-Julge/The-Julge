@@ -3,7 +3,7 @@ import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 import { errorInterceptor, requestInterceptor, successInterceptor } from '@/apis/interceptors';
 
 const axiosRequestConfig: AxiosRequestConfig = {
-  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/4-18/the-julge`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/0-1/the-julge`,
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',

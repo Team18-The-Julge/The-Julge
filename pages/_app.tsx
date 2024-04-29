@@ -26,14 +26,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   // ErrorBoundary: 자바스크립트 오류 처리; 비동기 에러의 경우 컴포넌트에서 throw error를 통해 자바스크립트 에러를 발생시킬 수 있다.
   // Suspense: 비동기 로딩 처리
-  return getLayout(
+  return (
     <AsyncBoundary>
       <Provider>
         <QueryClientProvider client={queryClient}>
           <ModalGroup.Root>
-            <FilterProvider>
-              <Component {...pageProps} />
-            </FilterProvider>
+            <FilterProvider>{getLayout(<Component {...pageProps} />)}</FilterProvider>
           </ModalGroup.Root>
         </QueryClientProvider>
       </Provider>
