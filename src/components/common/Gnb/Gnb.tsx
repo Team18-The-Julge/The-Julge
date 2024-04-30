@@ -49,6 +49,8 @@ function Gnb({ userType, alertList }: Props) {
   useEffect(() => {
     if (isModalOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
     }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);

@@ -22,13 +22,29 @@ type NotificationModalProps = {
 export default function NotificationModal({ alertCount, alertList, isModalShow, filterRef }: NotificationModalProps) {
   const [modalClose, setModlaClose] = useState(false);
 
+  if (alertCount === 0) {
+    return (
+      isModalShow &&
+      !modalClose && (
+        <section className={styles.containerNone} ref={filterRef}>
+          <div className={styles.alertsNone}>
+            <h1>알림 {alertCount}개</h1>
+            <Close className={styles.closeButton} onClick={() => setModlaClose(true)} />
+          </div>
+          <div className={styles.noneMessage}>
+            <p>알림이 없습니다!</p>
+          </div>
+        </section>
+      )
+    );
+  }
   return (
     isModalShow &&
     !modalClose && (
       <section className={styles.container} ref={filterRef}>
         <div>
           <h1>알림 {alertCount}개</h1>
-          <Close onClick={() => setModlaClose(true)} />
+          <Close className={styles.closeButton} onClick={() => setModlaClose(true)} />
         </div>
 
         {alertList.map((item) => (

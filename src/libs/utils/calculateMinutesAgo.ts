@@ -14,8 +14,8 @@ export default function calculateMinutesAgo(time: string) {
 
   if (minutes < 2) return '1 분 전';
   if (minutes < 60) return `${minutes} 분 전`;
-  if (hours < 24) return hours === 1 ? '1 시간 전' : `${hours} hours ago`;
-  if (days < 31) return days === 1 ? '1 일 전' : `${days} days ago`;
-  if (months < 12) return months === 1 ? '1 달 전' : `${months} months ago`;
+  if (hours < 24) return hours === 1 ? '1 시간 전' : `${hours} 시간 전`;
+  if (days < 31) return days === 1 ? '1 일 전' : `${days} 일 전`;
+  if (months < 12) return months === 1 ? '1 달 전' : `${months} 달 전`;
   return years === 1 ? '1 year ago' : `${years} 년 전`;
 }
