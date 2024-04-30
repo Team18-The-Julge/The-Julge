@@ -1,8 +1,9 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 
-import styles from '@/components/common/Badge/Badge.module.scss';
 import { ReactComponent as CloseButton } from '@/public/svgs/badgeCloseBtn.svg';
+
+import styles from './Badge.module.scss';
 
 type BadgeProps = {
   title: string;

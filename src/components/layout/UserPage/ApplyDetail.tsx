@@ -12,6 +12,7 @@ type NoticeListData = {
 };
 
 function ApplyDetail({ applicationData, onClickList }: NoticeListData) {
+  console.log('확인용 111111', applicationData);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
   const totalPages = Math.ceil(applicationData.count / itemsPerPage - 1);

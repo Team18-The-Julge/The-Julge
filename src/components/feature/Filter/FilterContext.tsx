@@ -4,7 +4,6 @@ type FilterContextProps = {
   isOpen: boolean;
   close: () => void;
   open: () => void;
-  toggle: () => void;
 };
 
 export const FilterContext = createContext<FilterContextProps | null>(null);
@@ -22,10 +21,6 @@ export function FilterProvider({ children }: { children: ReactNode }) {
   const close = () => {
     setIsOpen(false);
   };
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  return <FilterContext.Provider value={{ isOpen, open, close, toggle }}>{children}</FilterContext.Provider>;
+  return <FilterContext.Provider value={{ isOpen, open, close }}>{children}</FilterContext.Provider>;
 }

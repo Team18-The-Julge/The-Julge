@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export default function UserDetailPage({ userId }: Props) {
   const { data: userData } = useGetUser(userId);
-  const { data: applicationData } = useGetApplicationListByUserId(userData?.item.id, { offset: 0, limit: 20 });
+  const { data: applicationData } = useGetApplicationListByUserId(userData?.item.id, { offset: 0, limit: 5 });
 
   const router = useRouter();
   const onClickList = () => {

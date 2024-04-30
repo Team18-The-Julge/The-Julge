@@ -1,7 +1,7 @@
-import styles from '@/components/feature/pagination/pagination.module.scss';
+import { ReactComponent as Left } from '@/public/svgs/leftChevron.svg';
+import { ReactComponent as Right } from '@/public/svgs/rightChevron.svg';
 
-import PaginationButton from '@/components/feature/pagination/paginationButton';
-
+import styles from './pagination.module.scss';
 
 type PaginationType = {
   currentPage: number;
@@ -10,11 +10,10 @@ type PaginationType = {
   onPageChange: (page: number) => void;
 };
 
-/**
- * Pagination 컴포넌트
+/* Pagination 컴포넌트
  * @param currentPage 현재 페이지
  * @param totalPages 전체 페이지 수
- * @param onPageChange 현재 페이지 usestate에 저장하는 함수: onPageChange(저장할 페이지번호)
+ * @param onPageChange 현재 페이지 usestate에 저장하는 함수: onPageChange(페이지번호)
  */
 function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
   // 페이지 그룹 계산
@@ -28,12 +27,16 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
     <article className={styles.pagination}>
       {/* 이전 페이지 버튼 */}
       {totalPages > 7 && (
-        <PaginationButton
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
-          direction="prev"
-        />
+        <div>
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+          <button
+            type="button"
+            className={currentPage === 1 ? styles.disable : ''}
+            onClick={() => handleClick(currentPage - 1)}
+          >
+            <Left />
+          </button>
+        </div>
       )}
       <ul className={styles.page}>
         {/* 페이지 번호 버튼 */}
@@ -48,12 +51,16 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
       </ul>
       {/* 다음 페이지 버튼 */}
       {totalPages > 7 && (
-        <PaginationButton
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
-          direction="next"
-        />
+        <div>
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+          <button
+            type="button"
+            className={currentPage === totalPages ? styles.disable : ''}
+            onClick={() => handleClick(currentPage + 1)}
+          >
+            <Right />
+          </button>
+        </div>
       )}
     </article>
   );

@@ -17,6 +17,7 @@ type Props = {
 
 type AlertFormat = {
   shop: string;
+  shopId: string;
   result: string;
   createdAt: string;
   startsAt: string;
@@ -30,18 +31,12 @@ function Gnb({ userType, alertList }: Props) {
   const modalRef = useRef<HTMLDivElement>(null);
   const modalFilterRef = useRef<HTMLDivElement>(null);
   const NotiStatus = alertList.count > 0;
-  const notiButtonRef = useRef<HTMLButtonElement>(null);
 
   const toggleModal = () => {
-    setIsModalOpen((prev) => !prev);
+    setIsModalOpen(!isModalOpen);
   };
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      modalRef.current &&
-      !modalRef.current.contains(event.target as Node) &&
-      notiButtonRef.current &&
-      !notiButtonRef.current.contains(event.target as Node)
-    ) {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
       setIsModalOpen(false);
     }
   };
@@ -58,6 +53,7 @@ function Gnb({ userType, alertList }: Props) {
     if (alertList && alertList.count > 0) {
       const formatAlertList = alertList.items.map((alert) => ({
         shop: alert.item.shop.item.name,
+        shopId: alert.item.shop.item.id,
         result: alert.item.result,
         createdAt: alert.item.createdAt,
         startsAt: alert.item.notice.item.startsAt,
@@ -90,7 +86,7 @@ function Gnb({ userType, alertList }: Props) {
             <div className={styles.gnbMenuThree}>
               <Menu id="user" name="내 프로필" />
               <LogoutMenu name="로그아웃" />
-              <NotiButton NotiStatus={NotiStatus} onClick={toggleModal} ref={notiButtonRef} />
+              <NotiButton NotiStatus={NotiStatus} onClick={toggleModal} />
               <div className={styles.notiModalSection} ref={modalRef}>
                 {isModalOpen && (
                   <NotificationModal
@@ -107,7 +103,7 @@ function Gnb({ userType, alertList }: Props) {
             <div className={styles.gnbMenuThree}>
               <Menu id="shop" name="내 가게" />
               <LogoutMenu name="로그아웃" />
-              <NotiButton NotiStatus={NotiStatus} onClick={toggleModal} ref={notiButtonRef} />
+              <NotiButton NotiStatus={NotiStatus} onClick={toggleModal} />
               <div className={styles.notiModalSection} ref={modalRef}>
                 {isModalOpen && (
                   <NotificationModal

@@ -21,7 +21,7 @@ function calcFormatDuratoin(duration: string, workhour: number) {
 
   const newTime = `${worktimeAdded % 24}:${minutes}`;
 
-  return `${date} ${time}:${minutes}~${newTime} (${workhour}시간)`;
+  return `${date} ${time}:${minutes}~${newTime}`;
 }
 
 export default calcFormatDuratoin;

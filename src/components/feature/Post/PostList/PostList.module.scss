@@ -7,8 +7,7 @@ $card-size-small: 17.1rem;
 
 .listWrapper {
   @include flexbox(column, flex-start, flex-start);
-  // max-width: 96.5rem;
-  width: 100%;
+  max-width: 96.5rem;
   justify-content: center;
   display: grid;
   gap: 3.1rem 1.4rem;
