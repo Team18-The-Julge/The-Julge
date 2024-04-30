@@ -56,6 +56,14 @@ export type ShopItem = {
   originalHourlyPay: number;
 };
 
+type CurrentUserApplicationItem = {
+  item: {
+    id: string;
+    status: Status;
+    createdAt: string;
+  };
+};
+
 export type NoticeItem = {
   id: string;
   hourlyPay: number;
@@ -63,6 +71,7 @@ export type NoticeItem = {
   workhour: number;
   description: string;
   closed: boolean;
+  currentUserApplication: CurrentUserApplicationItem | null;
 };
 
 export type ApplicationItem = {

@@ -1,5 +1,86 @@
 @import '@/styles/globals.scss';
-.text {
-  /* 테스트 */
-  color: $color-kakao;
+
+.noticeContainer {
+  @include flexbox(column, center, center);
+  padding: 4rem 1.2rem;
+  @include tablet {
+    padding: 6rem 0;
+  }
+}
+
+.customContainer {
+  @include flexbox(column, center, center);
+  background-color: #ffebe7;
+  padding: 4rem 1.2rem;
+  @include tablet {
+    padding: 6rem 0;
+  }
+  .customContent {
+    max-width: 100rem;
+    h2 {
+      @include sopoqa-20-700;
+      margin-bottom: 1.6rem;
+      @include tablet {
+        margin-bottom: 3.2rem;
+        @include sopoqa-28-700;
+      }
+    }
+  }
+}
+
+.noticeContainer {
+  gap: 4rem;
+  .noticeList {
+    max-width: 100rem;
+    width: 100%;
+    @include flexbox(column);
+    gap: 1rem;
+    align-items: normal;
+    @include tablet {
+      gap: 3.2rem;
+    }
+  }
+}
+
+.txtContent {
+  width: 100%;
+  @include flexbox(column, center, flex-start);
+  gap: 1.6rem;
+  @include tablet {
+    gap: 0;
+    @include flexbox(row, space-between, center);
+  }
+  h2 {
+    @include sopoqa-20-700;
+    @include tablet {
+      @include sopoqa-28-700;
+    }
+  }
+  .highlight {
+    color: $color-primary;
+  }
+}
+
+.condition {
+  display: -webkit-inline-box;
+  gap: 1rem;
+  .filterInput {
+    width: 100%;
+    max-width: 10.5rem;
+  }
+  .filterContent {
+    position: relative;
+  }
+  .filterBt {
+    background: $color-red-30;
+    border: 0;
+  }
+}
+
+.customList {
+  overflow-x: auto;
+  width: 100%;
+  .mySwiper {
+    max-width: 100rem;
+  }
 }

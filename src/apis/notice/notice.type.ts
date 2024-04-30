@@ -24,7 +24,7 @@ export type BaseNoticesRes = {
 };
 
 export type GetNoticeListParams = BaseQuery & {
-  address?: string;
+  address?: Array<string>;
   keyword?: string;
   startsAtGte?: string;
   hourlyPayGte?: number;

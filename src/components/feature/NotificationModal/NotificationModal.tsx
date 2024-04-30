@@ -1,9 +1,8 @@
 import { RefObject, useState } from 'react';
 
 import styles from '@/components/feature/NotificationModal/NotificationModal.module.scss';
+import NotificationModalCard from '@/components/feature/NotificationModal/NotificationModalCard/NotificationModalCard';
 import { ReactComponent as Close } from '@/public/svgs/closeButton.svg';
-
-import NotificationModalCard from './NotificationModalCard/NotificationModalCard';
 
 type NotificationModalProps = {
   alertCount: number;

@@ -1,97 +1,127 @@
-import Image from 'next/image';
+import axios, { AxiosError } from 'axios';
+import { useAtom } from 'jotai';
+import Cookies from 'js-cookie';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
-import styles from '@/components/feature/Post/Post.module.scss';
-import PostTag from '@/components/feature/Post/PostTag/PostTag';
-import { pageList } from '@/libs/constants/contants';
-import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
+import { PostAuthenticationPayload, PostAuthenticationRes } from '@/apis/authentication/authentication.type';
+import { usePostAuthentication } from '@/apis/authentication/useAuthenticationService';
+import Button from '@/components/common/Button/Button';
+import InputForm from '@/components/common/Input/InputForm/InputForm';
+import {
+  IFormInput,
+  defaultLoginFormValues,
+  validate,
+  status,
+  LoginErrorMessage
+} from '@/libs/constants/AuthForm.type';
+import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
 
-import { PostProps } from './PostType';
+import { userInfoAtom } from '../../../libs/contexts/AuthAtom';
+import Modal from '../Modal/Modal';
+import ModalGroup, { useModal } from '../Modal/ModalGroup';
 
-export default function Post({
-  id,
-  name,
-  startedAt,
-  workhour,
-  address,
-  hourlyPay,
-  originalHourlyPay,
-  imageUrl,
-  closed,
-  shopId
-}: PostProps) {
+export default function LoginForm() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid }
+  } = useForm<IFormInput>({ defaultValues: defaultLoginFormValues, mode: 'onTouched' });
+
+  // 모달 띄울 에러메세지
+  const [alertMessage, setAlertMessage] = useState('');
+  // 모달 열고 닫는 상태
+  const { open: modalOpen, isOpen: isModalOpen } = useModal();
+  // autom으로 유저 정보 전역 저장
+  const [, setUserInfoAtom] = useAtom(userInfoAtom);
+  // 버튼 active
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  // 관리할 레지스터 (validation 을 위해 존재)
+  const registerList = {
+    email: register('email', validate.email),
+    password: register('password', validate.password)
+  };
+
+  // 리다이렉트를 위한 라우터
   const router = useRouter();
-  const duration = calcFormatDuratoin(startedAt, workhour);
-  const now = new Date();
-  const startedDate = new Date(startedAt);
-  const isPastAnnouncement = startedDate < now;
 
-  const handleClickToDetailPage = () => {
-    const { pathname } = router;
-    if (pathname.startsWith('/shop')) {
-      router.push(pageList.shopNoticeDetail(shopId, id));
+  // 로그인 post 보내기
+  const { mutate: loginMutate } = usePostAuthentication({
+    email: '',
+    password: ''
+  });
+
+  // login 성공시 실행
+  const handleLoginSuccess = (userdata: PostAuthenticationRes) => {
+    const { data } = userdata;
+    if (data.item) {
+      const { token, user } = data.item;
+      const { id } = user.item;
+      Cookies.set('authToken', token, { expires: 1, path: '/' });
+      Cookies.set('userId', id, { expires: 1, path: '/' });
+      setUserInfoAtom(userdata);
+      router.push(status.login.redirectPath);
     } else {
-      router.push(pageList.userNoticeDetail(shopId, id));
+      console.error('data item is empty');
     }
   };
 
+  // login 실패시 실행
+  const handleLoginError = (e: AxiosError) => {
+    if (axios.isAxiosError(e) && e.response) {
+      const data = e.response.data as LoginErrorMessage;
+      setAlertMessage(data.message);
+      modalOpen();
+    } else {
+      console.error(e);
+    }
+  };
+  const onSubmit = (payload: PostAuthenticationPayload) => {
+    loginMutate(payload, { onSuccess: handleLoginSuccess, onError: handleLoginError });
+  };
+
+  useEffect(() => {
+    if (isValid) {
+      setIsButtonActive(true);
+    } else {
+      setIsButtonActive(false);
+    }
+  }, [isValid]);
   return (
-    <div
-      role="presentation"
-      className={closed ? `${styles.cardWrapper} ${styles.closed}` : styles.cardWrapper}
-      onClick={handleClickToDetailPage}
-    >
-      <div className={styles.cardHeader}>
-        <Image
-          className={styles.img}
-          src={imageUrl}
-          alt={name}
-          width={1120}
-          height={640}
-          style={{ objectFit: 'cover' }}
-        />
-        {closed && (
-          <div className={styles.closedLayer}>
-            <span className={styles.closedText}>마감 공고</span>
-          </div>
-        )}
-        {isPastAnnouncement && (
-          <div className={styles.closedLayer}>
-            <span className={styles.closedText}>지난 공고</span>
-          </div>
-        )}
-      </div>
-      <section className={styles.cardSection}>
-        <div className={styles.sectionContent}>
-          <div className={closed ? `${styles.title} ${styles.closed}` : styles.title}>{name}</div>
-          <div className={styles.sectionDuration}>
-            <Image
-              className={styles.img}
-              src={closed ? '/svgs/clock-disabled.svg' : '/svgs/clock.svg'}
-              alt="clock"
-              width={17}
-              height={17}
-            />
-            <p className={closed ? `${styles.duration} ${styles.closed}` : styles.duration}>{duration}</p>
-          </div>
-          <div className={styles.sectionAddress}>
-            <Image
-              className={styles.img}
-              src={closed ? '/svgs/location-disabled.svg' : '/svgs/location.svg'}
-              alt="location"
-              width={17}
-              height={17}
-            />
-            <p className={closed ? `${styles.address} ${styles.closed}` : styles.address}>{address}</p>
-          </div>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Logo width="248" height="44" />
+        <div>
+          <InputForm
+            label="이메일"
+            errorMessage={errors.email?.message}
+            type="email"
+            {...registerList.email}
+            name="email"
+          />
+          <InputForm
+            label="비밀번호"
+            errorMessage={errors.password?.message}
+            type="password"
+            {...registerList.password}
+            name="password"
+          />
+          <Button size="large" solid submit active={isButtonActive}>
+            {status.login.buttonText}
+          </Button>
         </div>
-        <div className={styles.sectionHourlyPay}>
-          <p className={closed ? `${styles.hourlyPay} ${styles.closed}` : styles.hourlyPay}>
-            {`${hourlyPay.toLocaleString()}원`}
-          </p>
-          <PostTag closed={closed} hourlyPay={hourlyPay} originalHourlyPay={originalHourlyPay} />
+        <div>
+          <p>{status.login.footerText}</p>
+          <Link href={status.login.footerLink}>{status.login.footerLinkText}</Link>
         </div>
-      </section>
-    </div>
+      </form>
+      {isModalOpen && (
+        <ModalGroup.Content>
+          <Modal.Error>{alertMessage}</Modal.Error>
+        </ModalGroup.Content>
+      )}
+    </>
   );
 }

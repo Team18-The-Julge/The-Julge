@@ -1,5 +1,4 @@
-@import '@/styles/fonts.scss';
-@import '@/styles/colors.scss';
+@import '@/styles/globals.scss';
 
 .pagination {
   width: 100%;
@@ -7,7 +6,10 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  @include sopoqa-14-400;
+  @include sopoqa-12-400;
+  @include tablet {
+    @include sopoqa-14-400;
+  }
 }
 
 .pagination > div {
@@ -30,11 +32,15 @@
   gap: 0.2rem;
   li > button {
     display: flex;
-    width: 4rem;
-    height: 4rem;
+    width: 3.2rem;
+    height: 3.2rem;
     justify-content: center;
     align-items: center;
     transition: all 0.2s;
+    @include tablet {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 }
 
